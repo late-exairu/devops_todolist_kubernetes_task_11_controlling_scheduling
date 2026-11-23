@@ -23,7 +23,7 @@ kubectl get pods -A -o wide
 ### Check the StatefulSet has the toleration, the node affinity (`app=mysql`) and the pod anti-affinity:
 
 ```bash
-kubectl get statefulset mysql -n todoapp -o yaml | grep -E -A12 "affinity:|tolerations:"
+kubectl get statefulset mysql -n mysql -o yaml | grep -E -A12 "affinity:|tolerations:"
 ```
 
 ### Check the Deployment has the preferred node affinity (`app=todoapp`) and the pod anti-affinity:
