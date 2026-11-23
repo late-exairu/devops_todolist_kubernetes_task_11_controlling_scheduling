@@ -9,7 +9,7 @@ chmod +x bootstrap.sh && ./bootstrap.sh
 ### Check node labels and taints:
 
 ```bash
-kubectl get nodes -o jsonpath="{range .items[*]}{.metadata.name} {.spec.taints[]}{\"\n\"}"
+kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}app={.metadata.labels.app}{"\t"}{.spec.taints}{"\n"}{end}'
 ```
 
 ### Check pod placement:
@@ -29,5 +29,5 @@ kubectl get statefulset mysql -n todoapp -o yaml | grep -E -A12 "affinity:|toler
 ### Check the Deployment has the preferred node affinity (`app=todoapp`) and the pod anti-affinity:
 
 ```bash
-kubectl get deployment mysql -n todoapp -o yaml | grep -A25 "affinity:"
+kubectl get deployment todoapp -n todoapp -o yaml | grep -A25 "affinity:"
 ```
